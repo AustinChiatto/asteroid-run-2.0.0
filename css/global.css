@@ -1,0 +1,27 @@
+/* ===========================
+Asteroid Run v2.0.0
+---
+global style-sheet
+start-date: 06.09.2023
+=========================== */
+
+:root {
+    --color-body-bg: #01090e;
+
+    /* page defaults */
+    background: var(--color-body-bg);
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+.canvas-container {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-canvas {
+    border: 1px solid blue;
+}
