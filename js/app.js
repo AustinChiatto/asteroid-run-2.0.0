@@ -16,7 +16,7 @@ canvasBackdrop.src = './assets/backdrop/space-backrop-01.png';
 
 // create backdrop class
 class CanvasBackdrop {
-    constructor(image) {
+    constructor() {
         // adjust position to top right
         this.position = {
             x: 0,
@@ -33,9 +33,6 @@ class CanvasBackdrop {
         this.buffer.height = this.height;
         this.bufferCtx = this.buffer.getContext('2d');
     }
-
-    
-
 
     // draw image method
     draw() {
@@ -234,6 +231,19 @@ class Enemy {
             this.position.y += this.velocity.y;
         }
     };
+
+    fire(enemyProjectiles) {
+        enemyProjectiles.push(new EnemyProjectile({
+            position: {
+                x: this.position.x + (this.width / 2),
+                y: this.position.y + (this.height)
+            },
+            velocity: {
+                x: 0,
+                y: enemyProjectileSpeed
+            }
+        }))
+    }
 };
 
 const enemies = [];
@@ -249,16 +259,93 @@ enemies.push(new Enemy({
     }
 }));
 
+// Player Projectiles
+// ===========================
+const enemyProjectileSpeed = 7;
+class EnemyProjectile {
+    constructor({position, velocity}){
+        this.position = position;
+        this.velocity = velocity;
+
+         // create a new image object
+         const projectile = new Image();
+         // set image path to path of image
+         projectile.src = './assets/player/bullet-001.png';
+         // when the image loads, set image and dimensions
+         projectile.onload = () => {
+            this.image = projectile;
+            this.width = projectile.width * 2;
+            this.height = projectile.height * 2;
+         }
+    };
+
+    // draw image method
+    draw() {
+        // if the image exists, set props
+        c.drawImage(
+            this.image,
+            this.position.x,
+            this.position.y,
+            this.width,
+            this.height
+        );
+    };
+
+    update() {
+        if (this.image) {
+        this.draw();
+        this.position.x += this.velocity.x;
+        this.position.y += this.velocity.y;
+        }
+    };
+};
+
+const enemyProjectiles = [];
+
 // animation loop
 // ===========================
 // continuously draws items
+let frameCount = 0;
+let game = {
+    over: false,
+    active: false
+}
+
 function render() {
+    frameCount++;
     requestAnimationFrame(render);
     c.clearRect(0, 0, canvas.width, canvas.height);
     // objects
     backdrop.update();
     player.update();
 
+    enemyProjectiles.forEach((enemyProjectile, i) => {
+        
+        if (enemyProjectile.position.y + enemyProjectile.height >= canvas.height){
+            // delete the object from the array
+            setTimeout(() => {
+                enemyProjectiles.splice(i, 1);
+            }, 0);
+        } else {
+            enemyProjectile.update();
+        }
+
+        if (
+            (enemyProjectile.position.y - (enemyProjectile.height) <= player.position.y + player.height)
+            &&
+            (enemyProjectile.position.x + enemyProjectile.width >= player.position.x)
+            &&
+            (enemyProjectile.position.x - enemyProjectile.width <= player.position.x + player.width)
+            &&
+            (enemyProjectile.position.y + enemyProjectile.height >= player.position.y )
+            ) {
+                console.log("boop");
+                setTimeout(() => {
+                    enemyProjectiles.splice(i, 1);
+                    game.over = true;
+                }, 0);
+        }
+    });
     // animate projectiles
     playerProjectiles.forEach((projectile, i) => {
         // if the projectile exits the top of the canvas
@@ -275,6 +362,13 @@ function render() {
     // enemy
     enemies.forEach((enemy, i) => {
         enemy.update();
+
+        // enemy projectile control
+        // fire a projectile every 100 frames
+        if (frameCount % 100 === 0) {
+            // create enemy projectile
+            enemy.fire(enemyProjectiles)
+        }
 
         // enemy player projectile collision
         playerProjectiles.forEach((projectile, j) => {
