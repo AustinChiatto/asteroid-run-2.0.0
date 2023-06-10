@@ -23,7 +23,5 @@ start-date: 06.09.2023
 }
 
 .game-canvas {
-    /* border: 1px solid blue; */
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+    will-change: transform;
 }
