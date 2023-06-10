@@ -6,7 +6,7 @@ start-date: 06.09.2023
 =========================== */
 
 :root {
-    --color-body-bg: #01090e;
+    --color-body-bg: #3f3d3e;
 
     /* page defaults */
     background: var(--color-body-bg);
@@ -25,4 +25,5 @@ start-date: 06.09.2023
 .game-canvas {
     image-rendering: pixelated;
     will-change: transform;
+    border: 1rem solid #232323;
 }

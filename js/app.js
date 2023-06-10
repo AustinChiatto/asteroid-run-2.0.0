@@ -7,7 +7,7 @@ const c = canvas.getContext('2d');
 // ===========================
 // define dimensions
 canvas.width = 800;
-canvas.height = innerHeight - 64;
+canvas.height = 900;
 
 // create a new image object
 const canvasBackdrop = new Image();
@@ -81,6 +81,9 @@ class Player {
             y: 0
         };
 
+        // controls player visibility
+        this.opacity = 1;
+
         // create a new image object
         const image = new Image();
         // set image path to path of image
@@ -100,6 +103,8 @@ class Player {
 
     // draw image method
     draw() {
+        c.save();
+        c.globalAlpha = this.opacity;
         // if the image exists, set props
         c.drawImage(
             this.image,
@@ -108,6 +113,7 @@ class Player {
             this.width,
             this.height
         );
+        c.restore();
     };
 
     update() {
@@ -246,6 +252,7 @@ class Enemy {
     }
 };
 
+let maximumEnemies = 4;
 const enemies = [];
 
 enemies.push(new Enemy({
@@ -308,119 +315,127 @@ const enemyProjectiles = [];
 let frameCount = 0;
 let game = {
     over: false,
-    active: false
+    active: true
 }
 
 function render() {
-    frameCount++;
-    requestAnimationFrame(render);
-    c.clearRect(0, 0, canvas.width, canvas.height);
-    // objects
-    backdrop.update();
-    player.update();
+    if (!game.active) return;
+        requestAnimationFrame(render);
+        frameCount++;
+        c.clearRect(0, 0, canvas.width, canvas.height);
+        // objects
+        backdrop.update();
+        player.update();
 
-    enemyProjectiles.forEach((enemyProjectile, i) => {
-        
-        if (enemyProjectile.position.y + enemyProjectile.height >= canvas.height){
-            // delete the object from the array
-            setTimeout(() => {
-                enemyProjectiles.splice(i, 1);
-            }, 0);
-        } else {
-            enemyProjectile.update();
-        }
-
-        if (
-            (enemyProjectile.position.y - (enemyProjectile.height) <= player.position.y + player.height)
-            &&
-            (enemyProjectile.position.x + enemyProjectile.width >= player.position.x)
-            &&
-            (enemyProjectile.position.x - enemyProjectile.width <= player.position.x + player.width)
-            &&
-            (enemyProjectile.position.y + enemyProjectile.height >= player.position.y )
-            ) {
-                console.log("boop");
+        // animate plater projectiles
+        playerProjectiles.forEach((projectile, i) => {
+            // if the projectile exits the top of the canvas
+            if (projectile.position.y + projectile.height <= 0){
+                // delete the object from the array
                 setTimeout(() => {
-                    enemyProjectiles.splice(i, 1);
-                    game.over = true;
+                    playerProjectiles.splice(i, 1);
                 }, 0);
-        }
-    });
-    // animate projectiles
-    playerProjectiles.forEach((projectile, i) => {
-        // if the projectile exits the top of the canvas
-        if (projectile.position.y + projectile.height <= 0){
-            // delete the object from the array
-            setTimeout(() => {
-                playerProjectiles.splice(i, 1);
-            }, 0);
-        } else {
-            projectile.update();
-        }
-    });
-
-    // enemy
-    enemies.forEach((enemy, i) => {
-        enemy.update();
-
-        // enemy projectile control
-        // fire a projectile every 100 frames
-        if (frameCount % 100 === 0) {
-            // create enemy projectile
-            enemy.fire(enemyProjectiles)
-        }
-
-        // enemy player projectile collision
-        playerProjectiles.forEach((projectile, j) => {
-            if (
-                (projectile.position.y - (projectile.height) <= enemy.position.y + enemy.height)
-                &&
-                (projectile.position.x + projectile.width >= enemy.position.x)
-                &&
-                (projectile.position.x - projectile.width <= enemy.position.x + enemy.width)
-                &&
-                (projectile.position.y + projectile.height >= enemy.position.y )
-                ) {
-                setTimeout(() => {
-                    // finds the enemy in the enemies array
-                    const enemyExists = enemies.find((foundEnemy) => {
-                        return foundEnemy === enemy;
-                    })
-                    // finds the projectile in the playerProjectiles array
-                    const projectileExists = playerProjectiles.find((foundProjectile) => {
-                        return foundProjectile === projectile;
-                    })
-
-                    // if the enemy that is being removed exists inside the enemies array
-                    // splice/remove it from the array
-                    if (enemyExists && projectileExists) {
-                        enemies.splice(i, 1);
-                        playerProjectiles.splice(j, 1);
-                    }
-                }, 0);
+            } else {
+                projectile.update();
             }
         });
-    });
 
-    // controls
-    // ===========================
-    // horizontal movement
-    if (controls.left.pressed && player.position.x >= 0) { // if left arrow is pressed
-        player.velocity.x = -movementSpeed;
-    } else if (controls.right.pressed && (player.position.x + player.width) <= canvas.width) { // if right arrow is pressed
-        player.velocity.x = movementSpeed;
-    } else {
-        player.velocity.x = 0;
-    }
+        // enemy
+        enemies.forEach((enemy, i) => {
+            enemy.update();
 
-    // vertical movement
-    if (controls.up.pressed && player.position.y >= 0) { // if up arrow is pressed
-        player.velocity.y = -movementSpeed;
-    } else if (controls.down.pressed && (player.position.y + player.height) <= canvas.height) { // if down arrow is pressed
-        player.velocity.y = movementSpeed;
-    } else {
-        player.velocity.y = 0;
-    }
+            // enemy projectile control
+            // fire a projectile every 100 frames
+            if (frameCount % 100 === 0) {
+                // create enemy projectile
+                enemy.fire(enemyProjectiles)
+            }
+
+            // enemy player projectile collision
+            playerProjectiles.forEach((projectile, j) => {
+                if (
+                    (projectile.position.y - (projectile.height) <= enemy.position.y + enemy.height)
+                    &&
+                    (projectile.position.x + projectile.width >= enemy.position.x)
+                    &&
+                    (projectile.position.x - projectile.width <= enemy.position.x + enemy.width)
+                    &&
+                    (projectile.position.y + projectile.height >= enemy.position.y )
+                    ) {
+                    setTimeout(() => {
+                        // finds the enemy in the enemies array
+                        const enemyExists = enemies.find((foundEnemy) => {
+                            return foundEnemy === enemy;
+                        })
+                        // finds the projectile in the playerProjectiles array
+                        const projectileExists = playerProjectiles.find((foundProjectile) => {
+                            return foundProjectile === projectile;
+                        })
+
+                        // if the enemy that is being removed exists inside the enemies array
+                        // splice/remove it from the array
+                        if (enemyExists && projectileExists) {
+                            enemies.splice(i, 1);
+                            playerProjectiles.splice(j, 1);
+                        }
+                    }, 0);
+                }
+            });
+        });
+
+        // enemy projectiles
+        enemyProjectiles.forEach((enemyProjectile, i) => {
+            
+            if (enemyProjectile.position.y + enemyProjectile.height >= canvas.height){
+                // delete the object from the array
+                setTimeout(() => {
+                    enemyProjectiles.splice(i, 1);
+                }, 0);
+            } else {
+                enemyProjectile.update();
+            }
+
+            if (
+                (enemyProjectile.position.y - (enemyProjectile.height) <= player.position.y + player.height)
+                &&
+                (enemyProjectile.position.x + enemyProjectile.width >= player.position.x)
+                &&
+                (enemyProjectile.position.x - enemyProjectile.width <= player.position.x + player.width)
+                &&
+                (enemyProjectile.position.y + enemyProjectile.height >= player.position.y )
+                ) {
+                    console.log("boop");
+                    setTimeout(() => {
+                        enemyProjectiles.splice(i, 1);
+                        player.opacity = 0;
+                        game.over = true;
+                    }, 0);
+
+                    setTimeout(() => {
+                        game.active = false;
+                    }, 1500);
+            }
+        });
+
+        // controls
+        // ===========================
+        // horizontal movement
+        if (controls.left.pressed && player.position.x >= 0) { // if left arrow is pressed
+            player.velocity.x = -movementSpeed;
+        } else if (controls.right.pressed && (player.position.x + player.width) <= canvas.width) { // if right arrow is pressed
+            player.velocity.x = movementSpeed;
+        } else {
+            player.velocity.x = 0;
+        }
+
+        // vertical movement
+        if (controls.up.pressed && player.position.y >= 0) { // if up arrow is pressed
+            player.velocity.y = -movementSpeed;
+        } else if (controls.down.pressed && (player.position.y + player.height) <= canvas.height) { // if down arrow is pressed
+            player.velocity.y = movementSpeed;
+        } else {
+            player.velocity.y = 0;
+        }
 }
 
 render();
@@ -429,6 +444,9 @@ render();
 // ===========================
 // when a key is pressed down
 addEventListener('keydown', ({ key }) => {
+    // check if game.over is true
+    // if true return - doesn't run following code
+    if (game.over) return;
     // switch statement to check if/what key has been pressed down
     switch(key) {
         case 'ArrowLeft':
