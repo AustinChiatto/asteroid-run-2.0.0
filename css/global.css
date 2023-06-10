@@ -23,5 +23,6 @@ start-date: 06.09.2023
 }
 
 .game-canvas {
+    image-rendering: pixelated;
     will-change: transform;
 }
