@@ -14,17 +14,45 @@ start-date: 06.09.2023
     font-weight: 400;
 }
 
-.canvas-container {
+main {
     min-width: 100vw;
-    min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #06060a;
+    overflow: hidden;
+}
+
+/* .canvas-container {
+} */
+.game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #06060a;
+    margin-inline: auto;
+    position: relative;
+    border-left: 1rem solid #341b54;
+    border-right: 1rem solid #341b54;
 }
 
 .game-canvas {
     image-rendering: pixelated;
     will-change: transform;
     background: #06060a;
-    /* border: 1rem solid #232323; */
+}
+
+.game-score {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 9;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+.game-score__label {
+    margin-bottom: 1rem;
 }
