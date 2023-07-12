@@ -5,11 +5,12 @@ const movementSpeed = 5;
 // Player Projectile Settings
 // ===========================
 const projectileSpeed = -10;
+let heatCap = 20; // how many projectiles the user can fire before over-heating
 
 // Enemy Settings
 // ===========================
-
-const enemyMovementSpeed = 2;
+// how fast the enemy moves on screen
+let enemyMovementSpeed = 2;
 // point value of enemy
 let enemyValue; // point value of an enemy awarded to a player when eliminated
 // spawn rates & totals
@@ -23,4 +24,4 @@ const enemySpawnMaxFrames = 200;
 
 // Enemy Projectile Settings
 // ===========================
-const enemyProjectileSpeed = 7;
+let enemyProjectileSpeed = 7;

@@ -49,9 +49,15 @@ main {
     overflow: hidden;
 }
 
+/* helpers */
+.pad-block {
+    padding-block: 2rem 1rem;
+}
+
 /* .canvas-container {
 } */
 .game {
+    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,7 +156,7 @@ main {
 /* tutorial */
 .tutorial {
     position: absolute;
-    top: 7%;
+    top: 7rem;
     left: 115%;
     margin-right: -50%;
     transform: translate(-50%, -50%);

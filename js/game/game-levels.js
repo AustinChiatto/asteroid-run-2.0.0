@@ -42,6 +42,7 @@ let levels = {
             enemies.length = 0;
             enemyProjectiles.length = 0;
             pointTotal.textContent = gameScore;
+            levelTotal.textContent = gameLevelNum.textContent;
             // show game over screen
             gameOverScreen.style.display = "flex";
         },
@@ -63,8 +64,9 @@ let levels = {
             // hide html
             startScreen.style.display = "none";
             gameOverScreen.style.display = "none";
-            // game settings
             console.log("level: 1");
+            // game settings
+            type = 1;
             maxEnemiesOnScreen = 3;
             levelSpawnCap = 4;
             gameLevelNum.textContent = level - 2;
@@ -74,6 +76,9 @@ let levels = {
         init: () => {
             console.log("level: 2");
             // game settings
+            type = 1;
+            enemyMovementSpeed = 3;
+            enemyProjectileSpeed = 8;
             maxEnemiesOnScreen = 4;
             levelSpawnCap = 5; // number of enemies before next level
         },
@@ -82,6 +87,9 @@ let levels = {
         init: () => {
             console.log("level: 3");
             // game settings
+            type = 2;
+            // enemyMovementSpeed = 4;
+            enemyProjectileSpeed = 9;
             maxEnemiesOnScreen = 5;
             levelSpawnCap = 6; // number of enemies before next level
         },
@@ -90,6 +98,9 @@ let levels = {
         init: () => {
             console.log("level: 4");
             // game settings
+            type = 2;
+            enemyMovementSpeed = 4;
+            enemyProjectileSpeed = 10;
             maxEnemiesOnScreen = 6;
             levelSpawnCap = 7; // number of enemies before next level
         },
@@ -98,8 +109,22 @@ let levels = {
         init: () => {
             console.log("level: 5");
             // game settings
+            type = 3;
+            enemyMovementSpeed = 6;
+            enemyProjectileSpeed = 11;
             maxEnemiesOnScreen = 7;
             levelSpawnCap = 8; // number of enemies before next level
+        },
+    },
+    8: {
+        init: () => {
+            console.log("level: 6");
+            // game settings
+            type = 3;
+            enemyMovementSpeed = 7;
+            enemyProjectileSpeed = 12;
+            maxEnemiesOnScreen = 8;
+            levelSpawnCap = 9; // number of enemies before next level
         },
     },
 };

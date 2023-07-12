@@ -4,6 +4,7 @@ const gameScoreContainer = document.querySelector(".game-score");
 const gameScoreNum = document.querySelector(".game-score__number");
 const gameLevelNum = document.querySelector(".game-level__number");
 const pointTotal = document.querySelector(".js-pointTotal");
+const levelTotal = document.querySelector(".js-levelTotal");
 const canvas = document.querySelector(".game-canvas");
 const c = canvas.getContext("2d");
 const startScreen = document.querySelector(".js-startScreen");

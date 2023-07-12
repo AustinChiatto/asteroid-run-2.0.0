@@ -6,7 +6,7 @@ class Enemy {
         this.velocity = velocity; // sets velocity
         this.type = type; // sets the type of enemy
         this.spawnFrame = frameCount; // used to start the frame count for the enemy projectiles
-
+        console.log(type);
         // create a new image object
         const image = new Image();
 
@@ -19,13 +19,13 @@ class Enemy {
                 break;
             case 2:
                 // set image path to path of image
-                image.src = "./assets/enemy/enemy-001.png";
+                image.src = "./assets/enemy/enemy-sprite--02.png";
                 // set enemy value
                 enemyValue = 100;
                 break;
             case 3:
                 // set image path to path of image
-                image.src = "./assets/enemy/enemy-001.png";
+                image.src = "./assets/enemy/enemy-sprite--03.png";
                 // set enemy value
                 enemyValue = 200;
                 break;
@@ -116,7 +116,7 @@ function spawnEnemies() {
                     x: 0,
                     y: 2,
                 },
-                type: 1,
+                type: type,
             })
         );
     }
