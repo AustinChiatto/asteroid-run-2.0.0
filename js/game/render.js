@@ -14,24 +14,14 @@ function render() {
     });
 
     frameCount++;
-    if (!game.active) {
-        // show backdrop
-        backdrop.update();
-        gameScoreContainer.style.opacity = 0;
-        // ship is in center of screen
-        // title "Asteroid Run" appears above ship
-        // "press space to start" appears below
-        // button to show controls
-        player.beforeStart();
-    } else {
+    if (game.active) {
         c.clearRect(0, 0, canvas.width, canvas.height);
-        // show backdrop
+        // show and move bg
         backdrop.update();
         // run player object update method
         player.update();
         // show score
         gameScoreContainer.style.opacity = 1;
-
         // Player Projectiles
         // ===========================
         playerProjectiles.forEach((projectile, i) => {
@@ -106,9 +96,10 @@ function render() {
             });
         });
 
-        // Enemy Projectile Hits Player
+        // Enemy Projectile
         // ===========================
         enemyProjectiles.forEach((enemyProjectile, i) => {
+            // delete projectile if projectile leaves canvas
             if (enemyProjectile.position.y + enemyProjectile.height >= canvas.height) {
                 // delete the object from the array
                 setTimeout(() => {
@@ -118,6 +109,8 @@ function render() {
                 enemyProjectile.update();
             }
 
+            // Enemy Projectile - Player Collision
+            // ===========================
             if (enemyProjectile.position.y - enemyProjectile.height <= player.position.y + player.height && enemyProjectile.position.x + enemyProjectile.width >= player.position.x && enemyProjectile.position.x - enemyProjectile.width <= player.position.x + player.width && enemyProjectile.position.y + enemyProjectile.height >= player.position.y) {
                 console.log("boop");
                 setTimeout(() => {
@@ -128,6 +121,7 @@ function render() {
 
                 setTimeout(() => {
                     game.active = false;
+                    handleLevel(2);
                 }, 1500);
             }
         });
@@ -155,6 +149,9 @@ function render() {
         } else {
             player.velocity.y = 0;
         }
+    } else {
+        backdrop.update();
+        player.beforeStart();
     }
 }
 

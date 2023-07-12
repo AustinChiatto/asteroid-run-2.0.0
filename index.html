@@ -36,10 +36,21 @@
                     <p class="game-score__label">Points <span class="game-score__number">0</span></p>
                 </div>
                 <div class="canvas-container">
-                    <div class="game-screen">
+                    <div class="start-screen js-startScreen">
                         <div>
                             <h1>Asteroid Run</h1>
                             <h2>How long will you survive?</h2>
+                        </div>
+                        <h3>Press Space To Start</h3>
+                    </div>
+                    <div class="game-over-screen js-gameOverScreen">
+                        <div>
+                            <h1>Game Over</h1>
+                            <h2>Try Again?</h2>
+                        </div>
+                        <div>
+                            <h3>Total Points</h3>
+                            <p class="js-pointTotal">0</p>
                         </div>
                         <h3>Press Space To Start</h3>
                     </div>
@@ -63,6 +74,8 @@
         <script src="js/game/game-score.js"></script>
         <!-- Game Backdrop -->
         <script src="js/game/backdrop.js"></script>
+        <!-- Game Levels -->
+        <script src="js/game/game-levels.js"></script>
         <!-- Renderer //? remember to split this into separate functions -->
         <script src="js/game/render.js"></script>
     </body>

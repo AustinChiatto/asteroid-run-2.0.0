@@ -71,7 +71,8 @@ main {
 
 /* game screen */
 
-.game-screen {
+.start-screen,
+.game-over-screen {
     color: #974ec2;
     position: absolute;
     top: 10%;
@@ -80,7 +81,15 @@ main {
     left: 10%;
     z-index: 99;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     flex-direction: column;
+}
+
+.start-screen {
+    justify-content: space-between;
+}
+
+.game-over-screen {
+    justify-content: space-evenly;
+    display: none;
 }

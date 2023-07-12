@@ -4,6 +4,8 @@ const gameScoreContainer = document.querySelector(".game-score");
 const gameScoreNum = document.querySelector(".game-score__number");
 const canvas = document.querySelector(".game-canvas");
 const c = canvas.getContext("2d");
+const startScreen = document.querySelector(".js-startScreen");
+const gameOverScreen = document.querySelector(".js-gameOverScreen");
 
 // Canvas
 // ===========================
@@ -16,9 +18,6 @@ window.addEventListener("resize", function () {
     location.reload(); // reloads the page if the window dimensions are changed. -- temp solution
 });
 
-// Game States
+// initialize level
 // ===========================
-let game = {
-    over: false, // if game has ended -- used to trigger game over screen
-    active: true, // if game is currently running - used to start game
-};
+let level = 1;
