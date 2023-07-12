@@ -20,8 +20,6 @@ function render() {
         backdrop.update();
         // run player object update method
         player.update();
-        // show score
-        gameScoreContainer.style.opacity = 1;
         // Player Projectiles
         // ===========================
         playerProjectiles.forEach((projectile, i) => {
@@ -152,6 +150,7 @@ function render() {
     } else {
         backdrop.update();
         player.beforeStart();
+        gameScoreContainer.style.opacity = 0;
     }
 }
 

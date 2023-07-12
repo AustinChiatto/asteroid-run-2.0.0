@@ -20,8 +20,6 @@ let levels = {
             // stop game
             game.active = false;
             game.over = false;
-            // hide score
-            gameScoreContainer.style.opacity = 0;
             // show html
             startScreen.style.display = "flex";
         },
@@ -35,6 +33,7 @@ let levels = {
             // remove all enemies from canvas
             enemies.length = 0;
             enemyProjectiles.length = 0;
+            pointTotal.textContent = gameScore;
             // show game over screen
             gameOverScreen.style.display = "flex";
         },
@@ -48,6 +47,8 @@ let levels = {
             game.over = false;
             // show player
             player.opacity = 1;
+            // show score
+            gameScoreContainer.style.opacity = 1;
             // hide html
             startScreen.style.display = "none";
             gameOverScreen.style.display = "none";

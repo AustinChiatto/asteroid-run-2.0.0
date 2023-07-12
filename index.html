@@ -16,7 +16,7 @@
             crossorigin
         />
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Nabla&family=Silkscreen&display=swap"
             rel="stylesheet"
         />
         <link
@@ -38,21 +38,20 @@
                 <div class="canvas-container">
                     <div class="start-screen js-startScreen">
                         <div>
-                            <h1>Asteroid Run</h1>
-                            <h2>How long will you survive?</h2>
+                            <h1 class="hero-heading">Asteroid Run</h1>
+                            <h2 class="sub-head">How long will you survive?</h2>
                         </div>
-                        <h3>Press Space To Start</h3>
+                        <h3 class="start-prompt blink">Press Space To Start</h3>
                     </div>
                     <div class="game-over-screen js-gameOverScreen">
                         <div>
-                            <h1>Game Over</h1>
-                            <h2>Try Again?</h2>
+                            <h1 class="hero-heading">Game Over</h1>
+                            <h2 class="sub-head">Try Again?</h2>
                         </div>
                         <div>
-                            <h3>Total Points</h3>
-                            <p class="js-pointTotal">0</p>
+                            <h3 class="js-pointTotal hero-heading">0</h3>
                         </div>
-                        <h3>Press Space To Start</h3>
+                        <h4 class="sub-head blink">Press Space To Try Again</h4>
                     </div>
                     <canvas class="game-canvas"></canvas>
                 </div>

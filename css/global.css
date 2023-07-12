@@ -10,9 +10,13 @@ start-date: 06.09.2023
 
     /* page defaults */
     background: var(--color-body-bg);
-    font-family: "Roboto", sans-serif;
+    font-family: "DotGothic16", sans-serif;
     font-weight: 400;
 }
+
+/* font-family: 'DotGothic16', sans-serif;
+font-family: 'Nabla', cursive;
+font-family: 'Silkscreen', cursive; */
 
 /* typography */
 h1,
@@ -21,7 +25,8 @@ h3 {
     text-align: center;
 }
 
-h2 {
+h2,
+h4 {
     font-size: 1rem;
     text-align: center;
 }
@@ -63,6 +68,7 @@ main {
     color: white;
     text-align: center;
     padding: 1rem;
+    opacity: 0;
 }
 
 .game-score__label {
@@ -90,6 +96,50 @@ main {
 }
 
 .game-over-screen {
-    justify-content: space-evenly;
+    justify-content: space-around;
     display: none;
+}
+
+.start-prompt,
+.hero-heading {
+    font-family: "Nabla", cursive;
+    font-palette: --colorFont;
+}
+
+@font-palette-values --colorFont {
+    font-family: "Nabla";
+    base-palette: 3;
+    override-colors: 6 #ffb978;
+}
+
+.blink {
+    animation-name: blink;
+    animation-duration: 2s;
+    animation-timing-function: step-end;
+    animation-iteration-count: infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.sub-head {
+    font-family: "Silkscreen", cursive;
+    padding-top: 2rem;
+    text-align: center;
+    color: #ffb978;
 }
