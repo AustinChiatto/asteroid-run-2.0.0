@@ -55,6 +55,8 @@ let levels = {
             // show player
             player.opacity = 1;
             // show score
+            gameScore = 0;
+            gameScoreNum.textContent = gameScore;
             gameScoreContainer.style.opacity = 1;
             // reset enemy count
             historicLevelSpawnCount = 0;

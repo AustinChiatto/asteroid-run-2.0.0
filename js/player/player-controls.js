@@ -33,19 +33,46 @@ addEventListener("keydown", ({ key }) => {
         case "ArrowLeft":
             controls.left.pressed = true;
             break;
+        case "a":
+            controls.left.pressed = true;
+            break;
         case "ArrowRight":
+            controls.right.pressed = true;
+            break;
+        case "d":
             controls.right.pressed = true;
             break;
         case "ArrowUp":
             controls.up.pressed = true;
             break;
+        case "w":
+            controls.up.pressed = true;
+            break;
         case "ArrowDown":
+            controls.down.pressed = true;
+            break;
+        case "s":
             controls.down.pressed = true;
             break;
         case "x":
             controls.x.pressed = true;
             break;
         case "z":
+            controls.z.pressed = true;
+            playerProjectiles.push(
+                new PlayerProjectile({
+                    position: {
+                        x: player.position.x + player.width / 2,
+                        y: player.position.y,
+                    },
+                    velocity: {
+                        x: 0,
+                        y: projectileSpeed,
+                    },
+                })
+            );
+            break;
+        case "k":
             controls.z.pressed = true;
             playerProjectiles.push(
                 new PlayerProjectile({
@@ -69,19 +96,34 @@ addEventListener("keyup", ({ key }) => {
         case "ArrowLeft":
             controls.left.pressed = false;
             break;
+        case "a":
+            controls.left.pressed = false;
+            break;
         case "ArrowRight":
+            controls.right.pressed = false;
+            break;
+        case "d":
             controls.right.pressed = false;
             break;
         case "ArrowUp":
             controls.up.pressed = false;
             break;
+        case "w":
+            controls.up.pressed = false;
+            break;
         case "ArrowDown":
+            controls.down.pressed = false;
+            break;
+        case "s":
             controls.down.pressed = false;
             break;
         case "x":
             controls.x.pressed = false;
             break;
         case "z":
+            controls.z.pressed = false;
+            break;
+        case "k":
             controls.z.pressed = false;
             break;
     }
