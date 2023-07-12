@@ -1,16 +1,26 @@
+// future game level plan
+// ===========================
+// version 2.1
+// start level
+// assign level a total enemy spawn cap
+// once player has killed all enemies in cap
+// move on to next level
+// each increase in level:
+//     ++ enemyMovementSpeed
+//     ++ maxEnemiesOnScreen
+
+// version 2.2
+// add transition between levels
+// each increase in level:
+// spawn enemy variants that are worth more points and are more difficult
+// every 5 levels is a boss level
+
 // Game States
 // ===========================
 let game = {
     over: false, // if game has ended
     active: false, // if game is currently running
 };
-
-// Game Levels
-// ===========================
-function handleLevel(newLevel) {
-    level = newLevel;
-    levels[level].init();
-}
 
 let levels = {
     // start screen
@@ -46,9 +56,48 @@ let levels = {
             player.opacity = 1;
             // show score
             gameScoreContainer.style.opacity = 1;
+            // reset enemy count
+            historicLevelSpawnCount = 0;
             // hide html
             startScreen.style.display = "none";
             gameOverScreen.style.display = "none";
+            // game settings
+            console.log("level: 1");
+            maxEnemiesOnScreen = 3;
+            levelSpawnCap = 4;
+            gameLevelNum.textContent = level - 2;
+        },
+    },
+    4: {
+        init: () => {
+            console.log("level: 2");
+            // game settings
+            maxEnemiesOnScreen = 4;
+            levelSpawnCap = 5; // number of enemies before next level
+        },
+    },
+    5: {
+        init: () => {
+            console.log("level: 3");
+            // game settings
+            maxEnemiesOnScreen = 5;
+            levelSpawnCap = 6; // number of enemies before next level
+        },
+    },
+    6: {
+        init: () => {
+            console.log("level: 4");
+            // game settings
+            maxEnemiesOnScreen = 6;
+            levelSpawnCap = 7; // number of enemies before next level
+        },
+    },
+    7: {
+        init: () => {
+            console.log("level: 5");
+            // game settings
+            maxEnemiesOnScreen = 7;
+            levelSpawnCap = 8; // number of enemies before next level
         },
     },
 };

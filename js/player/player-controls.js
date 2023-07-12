@@ -43,8 +43,6 @@ addEventListener("keydown", ({ key }) => {
             controls.down.pressed = true;
             break;
         case "x":
-            console.log("shield");
-            console.log(enemies);
             controls.x.pressed = true;
             break;
         case "z":

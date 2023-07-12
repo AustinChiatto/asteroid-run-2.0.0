@@ -1,16 +1,41 @@
 // enemy
 // ===========================
 class Enemy {
-    constructor({ position, velocity }) {
-        this.position = position;
-        this.velocity = velocity;
-        // saves frame count from when enemy spawned in
-        // used to start the frame count for the enemy projectiles
-        this.spawnFrame = frameCount;
+    constructor({ position, velocity, type }) {
+        this.position = position; // sets position
+        this.velocity = velocity; // sets velocity
+        this.type = type; // sets the type of enemy
+        this.spawnFrame = frameCount; // used to start the frame count for the enemy projectiles
+
         // create a new image object
         const image = new Image();
-        // set image path to path of image
-        image.src = "./assets/enemy/enemy-001.png";
+
+        switch (type) {
+            case 1:
+                // set image path to path of image
+                image.src = "./assets/enemy/enemy-001.png";
+                // set enemy value
+                enemyValue = 50;
+                break;
+            case 2:
+                // set image path to path of image
+                image.src = "./assets/enemy/enemy-001.png";
+                // set enemy value
+                enemyValue = 100;
+                break;
+            case 3:
+                // set image path to path of image
+                image.src = "./assets/enemy/enemy-001.png";
+                // set enemy value
+                enemyValue = 200;
+                break;
+            default:
+                console.log("Unknown enemy type.");
+                break;
+        }
+
+        // console.log(this.type);
+
         // when the image loads, set image and dimensions
         image.onload = () => {
             this.image = image;
@@ -72,12 +97,18 @@ const enemies = [];
 
 // Handle Enemy Spawning
 // ===========================
+
+// take total enemy spawn cap
+// most of cap will be type 1
+// some of cap will be type 2
+// some of cap will be type 3
+
 function spawnEnemies() {
-    if (enemies.length < maximumEnemies) {
+    if (enemies.length < maxEnemiesOnScreen && historicLevelSpawnCount <= levelSpawnCap) {
+        historicLevelSpawnCount++;
         enemies.push(
             new Enemy({
                 position: {
-                    // x: (canvas.width / 2) - (this.width / 2),
                     x: 0,
                     y: 0,
                 },
@@ -85,6 +116,7 @@ function spawnEnemies() {
                     x: 0,
                     y: 2,
                 },
+                type: 1,
             })
         );
     }

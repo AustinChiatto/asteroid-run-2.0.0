@@ -36,6 +36,7 @@ function render() {
 
         // Enemy Spawning
         // ===========================
+
         if (frameCount >= randomFrame) {
             spawnEnemies();
             randomFrame = Math.floor(Math.random() * (enemySpawnMaxFrames - enemySpawnMinFrames + 1)) + enemySpawnMinFrames + frameCount;
@@ -85,9 +86,14 @@ function render() {
                         // splice/remove it from the array
                         if (enemyExists && projectileExists) {
                             gameScore += enemyValue;
+                            levelKillCount++;
+                            console.log("levelKillCount = " + levelKillCount);
                             gameScoreNum.textContent = gameScore;
                             enemies.splice(i, 1);
                             playerProjectiles.splice(j, 1);
+                            if (levelKillCount >= levelSpawnCap) {
+                                handleLevelChange();
+                            }
                         }
                     }, 0);
                 }
