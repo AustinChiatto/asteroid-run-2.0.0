@@ -110,7 +110,7 @@ function render() {
             // Enemy Projectile - Player Collision
             // ===========================
             if (enemyProjectile.position.y - enemyProjectile.height <= player.position.y + player.height && enemyProjectile.position.x + enemyProjectile.width >= player.position.x && enemyProjectile.position.x - enemyProjectile.width <= player.position.x + player.width && enemyProjectile.position.y + enemyProjectile.height >= player.position.y) {
-                console.log("boop");
+                console.log("You killed another pilot... You're a murderer!!!");
                 setTimeout(() => {
                     enemyProjectiles.splice(i, 1);
                     player.opacity = 0;

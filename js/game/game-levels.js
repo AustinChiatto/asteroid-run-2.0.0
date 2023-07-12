@@ -16,7 +16,6 @@ let levels = {
     // start screen
     1: {
         init: () => {
-            console.log("start");
             // stop game
             game.active = false;
             game.over = false;
@@ -27,7 +26,6 @@ let levels = {
     // game over
     2: {
         init: () => {
-            console.log("game over");
             // stop game
             game.active = false;
             // remove all enemies from canvas
@@ -41,7 +39,6 @@ let levels = {
     // game start
     3: {
         init: () => {
-            console.log("playing");
             // start game
             game.active = true;
             game.over = false;
@@ -57,4 +54,3 @@ let levels = {
 };
 // load level on first load
 levels[level].init();
-console.log(level);

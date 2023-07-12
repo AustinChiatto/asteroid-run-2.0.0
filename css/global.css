@@ -7,16 +7,12 @@ start-date: 06.09.2023
 
 :root {
     --color-body-bg: #06060a;
-
-    /* page defaults */
+    --color-font: #ffb978;
     background: var(--color-body-bg);
-    font-family: "DotGothic16", sans-serif;
+    color: var(--color-font);
+    font-family: "Silkscreen", cursive;
     font-weight: 400;
 }
-
-/* font-family: 'DotGothic16', sans-serif;
-font-family: 'Nabla', cursive;
-font-family: 'Silkscreen', cursive; */
 
 /* typography */
 h1,
@@ -26,9 +22,21 @@ h3 {
 }
 
 h2,
-h4 {
+h4,
+h5 {
     font-size: 1rem;
+    line-height: 1.5;
+}
+
+h2,
+h4 {
+    max-width: 50%;
     text-align: center;
+    margin-inline: auto;
+}
+
+img {
+    image-rendering: pixelated;
 }
 
 main {
@@ -37,7 +45,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #06060a;
+    background: var(--color-body-bg);
     overflow: hidden;
 }
 
@@ -47,7 +55,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #06060a;
+    background: var(--color-body-bg);
     margin-inline: auto;
     position: relative;
     border-left: 1rem solid #341b54;
@@ -57,7 +65,7 @@ main {
 .game-canvas {
     image-rendering: pixelated;
     will-change: transform;
-    background: #06060a;
+    background: var(--color-body-bg);
 }
 
 .game-score {
@@ -79,12 +87,11 @@ main {
 
 .start-screen,
 .game-over-screen {
-    color: #974ec2;
     position: absolute;
-    top: 10%;
-    right: 10%;
-    bottom: 10%;
-    left: 10%;
+    top: 7%;
+    right: 1rem;
+    bottom: 7%;
+    left: 1rem;
     z-index: 99;
     display: flex;
     align-items: center;
@@ -138,8 +145,14 @@ main {
 }
 
 .sub-head {
-    font-family: "Silkscreen", cursive;
     padding-top: 2rem;
-    text-align: center;
-    color: #ffb978;
+}
+
+/* tutorial */
+.tutorial {
+    position: absolute;
+    top: 7%;
+    left: 115%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }

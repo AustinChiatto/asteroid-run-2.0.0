@@ -36,23 +36,84 @@
                     <p class="game-score__label">Points <span class="game-score__number">0</span></p>
                 </div>
                 <div class="canvas-container">
+                    <!-- start screen -->
                     <div class="start-screen js-startScreen">
                         <div>
                             <h1 class="hero-heading">Asteroid Run</h1>
                             <h2 class="sub-head">How long will you survive?</h2>
                         </div>
-                        <h3 class="start-prompt blink">Press Space To Start</h3>
+                        <h3 class="start-prompt blink">
+                            Press
+                            <img
+                                width="134"
+                                height="32"
+                                src="assets/game/SPACEALTERNATIVE.png"
+                                alt=""
+                            />
+                            To Start
+                        </h3>
                     </div>
+                    <!-- game over screen -->
                     <div class="game-over-screen js-gameOverScreen">
                         <div>
                             <h1 class="hero-heading">Game Over</h1>
-                            <h2 class="sub-head">Try Again?</h2>
+                            <h2 class="sub-head">Try Again</h2>
                         </div>
                         <div>
                             <h3 class="js-pointTotal hero-heading">0</h3>
                         </div>
-                        <h4 class="sub-head blink">Press Space To Try Again</h4>
+                        <h4 class="sub-head blink">
+                            <img
+                                width="134"
+                                height="32"
+                                src="assets/game/SPACEALTERNATIVE.png"
+                                alt=""
+                            />
+                        </h4>
                     </div>
+                    <!-- tutorial -->
+                    <div class="tutorial">
+                        <h5>Ship Control</h5>
+                        <img
+                            width="34"
+                            height="32"
+                            src="assets/game/ARROWLEFT.png"
+                            alt=""
+                        />
+                        <img
+                            width="34"
+                            height="32"
+                            src="assets/game/ARROWUP.png"
+                            alt=""
+                        />
+                        <img
+                            width="34"
+                            height="32"
+                            src="assets/game/ARROWDOWN.png"
+                            alt=""
+                        />
+                        <img
+                            width="34"
+                            height="32"
+                            src="assets/game/ARROWRIGHT.png"
+                            alt=""
+                        />
+                        <h5>Weapons</h5>
+                        <img
+                            width="34"
+                            height="32"
+                            src="assets/game/Z.png"
+                            alt=""
+                        />
+                        <!-- <h5>Shield</h5>
+                        <img
+                            width="34"
+                            height="32"
+                            src="assets/game/X.png"
+                            alt=""
+                        /> -->
+                    </div>
+                    <!-- canvas -->
                     <canvas class="game-canvas"></canvas>
                 </div>
             </div>

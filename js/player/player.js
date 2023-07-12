@@ -49,7 +49,7 @@ class Player {
         if (this.image) {
             this.draw();
             this.position.x = canvas.width / 2 - this.width / 2;
-            this.position.y = canvas.height / 2 - this.height / 2;
+            this.position.y = canvas.height / 2;
         }
     }
 }
